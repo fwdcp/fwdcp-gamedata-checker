@@ -7,4 +7,4 @@ addons:
 
 install:
 - git clone --recursive https://github.com/alliedmodders/sourcemod.git -b 1.7-dev $TRAVIS_BUILD_DIR/sourcemod
-- cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
+- cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && env CFLAGS="--disable-warnings-as-errors" make
