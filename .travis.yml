@@ -1,5 +1,10 @@
 language: cpp
 
+addons:
+  apt:
+    packages:
+    - g++-multilib
+
 install:
 - git clone https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
 - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
