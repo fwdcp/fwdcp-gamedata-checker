@@ -7,5 +7,6 @@ addons:
 
 install:
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
-    - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
-    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && env CFLAGS="-Wno-unused-but-set-variable -std=c++0x" make
+    - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn    # make sure gdc can see the SourcePawn include files
+    - export CFLAGS="-Wno-unused-but-set-variable -std=c++0x"                                               # properly configure gdc to build successfully
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
