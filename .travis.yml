@@ -23,6 +23,9 @@ install:
     # build DepotDownloader
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && .ci/build.sh
 
+    # move DepotDownloader to main directory
+    - cp $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/DepotDownloader.exe $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/*.dll $TRAVIS_BUILD_DIR
+
     # download SourceMod, which includes gdc
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
 
@@ -34,3 +37,6 @@ install:
 
     # build gdc
     - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
+
+    # move gdc to main directory
+    - cp $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork/Release/gdc $TRAVIS_BUILD_DIR
