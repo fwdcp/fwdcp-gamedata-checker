@@ -1,0 +1,3 @@
+bin/*
+tf/bin/*
+tf/steam.inf

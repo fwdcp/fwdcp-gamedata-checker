@@ -29,6 +29,9 @@ install:
     # move DepotDownloader to main directory
     - cp $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/DepotDownloader.exe $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/*.dll $TRAVIS_BUILD_DIR
 
+    # download TF2 binaries
+    - cd $TRAVIS_BUILD_DIR && mono DepotDownloader.exe -app 232250 -dir . -filelist server-binaries.txt -all-platforms
+
     # download SourceMod, which includes gdc
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
 
