@@ -1,0 +1,28 @@
+"Games"
+{
+	/*
+	 * "Keys" are used to map gamedata offset names to linux symbol.
+	 * "Options" are used to mark validation options for windows signatures.
+	 *     Current valid options are:
+	 *         allowmultiple - don't warn if multiple matches are found
+	 *         allowmidfunc  - don't warn if signature does not match the
+	 *                         start of a function.
+	 *     Multiple options can be specified, separating them with a comma.
+	 *         ie. "allowmultiple,allowmidfunc"
+	 */
+
+	"tf"
+	{
+		"Keys"
+		{
+			// CompCtrl
+			"CTFGameRules::SetWinningTeam"       "_ZN12CTFGameRules14SetWinningTeamEiibbbb"
+			"CTFGameRules::SetStalemate"         "_ZN12CTFGameRules12SetStalemateEibb"
+			"CTFGameRules::HandleSwitchTeams"    "_ZN12CTFGameRules17HandleSwitchTeamsEv"
+			"CTFGameRules::RestartTournament"    "_ZN12CTFGameRules17RestartTournamentEv"
+			"CTFGameRules::CheckWinLimit"        "_ZN12CTFGameRules13CheckWinLimitEb"
+			"CTFTeam::GetTeamNumber"             "_ZNK5CTeam13GetTeamNumberEv"
+			"CTFTeam::ResetScores"               "_ZN5CTeam11ResetScoresEv"
+		}
+	}
+}
