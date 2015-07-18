@@ -3,12 +3,24 @@ language: cpp
 addons:
     apt:
         packages:
+            # gdc build dependencies
             - g++-multilib
 
 install:
+    # download DepotDownloader source
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
+
+    # build DepotDownloader
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && .ci/build.sh
+
+    # download SourceMod, which includes gdc
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
-    - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn    # make sure gdc can see the SourcePawn include files
-    - export CFLAGS="-Wno-unused-but-set-variable -std=c++0x"                                               # properly configure gdc to build successfully
+
+    # make sure gdc can see the SourcePawn include files
+    - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
+
+    # properly configure gdc to build successfully
+    - export CFLAGS="-Wno-unused-but-set-variable -std=c++0x"
+
+    # build gdc
     - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
