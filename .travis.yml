@@ -3,6 +3,10 @@ language: cpp
 addons:
     apt:
         packages:
+            # DepotDownloader build dependencies
+            - mono-devel
+            - libmono-system-core4.0-cil
+
             # gdc build dependencies
             - g++-multilib
 
