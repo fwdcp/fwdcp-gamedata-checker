@@ -6,6 +6,8 @@ addons:
             - g++-multilib
 
 install:
+    - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && .ci/build.sh
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn    # make sure gdc can see the SourcePawn include files
     - export CFLAGS="-Wno-unused-but-set-variable -std=c++0x"                                               # properly configure gdc to build successfully
