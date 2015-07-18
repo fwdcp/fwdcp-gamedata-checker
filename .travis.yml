@@ -46,3 +46,6 @@ install:
 
     # move gdc to main directory
     - cp $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork/Release/gdc $TRAVIS_BUILD_DIR
+
+    # download CompCtrl
+    - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
