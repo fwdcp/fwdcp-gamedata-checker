@@ -6,5 +6,6 @@ addons:
     - g++-multilib
 
 install:
-- git clone --recursive https://github.com/alliedmodders/sourcemod.git -b 1.7-dev $TRAVIS_BUILD_DIR/sourcemod
-- cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && env CFLAGS="-Wno-unused-but-set-variable" make
+- git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
+- ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
+- cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && env CFLAGS="-Wno-unused-but-set-variable -std=c++0x" make
