@@ -1,11 +1,11 @@
 language: cpp
 
 addons:
-  apt:
-    packages:
-    - g++-multilib
+    apt:
+        packages:
+            - g++-multilib
 
 install:
-- git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
-- ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
-- cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && env CFLAGS="-Wno-unused-but-set-variable -std=c++0x" make
+    - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
+    - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && env CFLAGS="-Wno-unused-but-set-variable -std=c++0x" make
