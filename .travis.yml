@@ -10,6 +10,9 @@ install:
     # download DepotDownloader source
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
 
+    # fix SteamKit dependency
+    - sed -i 's/SteamKit2.1.6.1/SteamKit2.1.6.3/g' $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/DepotDownloader.csproj
+
     # build DepotDownloader
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && .ci/build.sh
 
