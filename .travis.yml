@@ -6,6 +6,7 @@ addons:
             # DepotDownloader build dependencies
             - mono-devel
             - libmono-system-core4.0-cil
+            - nuget
 
             # gdc build dependencies
             - g++-multilib
@@ -17,14 +18,11 @@ install:
     # import NuGet certificates
     - mozroots --sync --import
 
-    # allow NuGet to download packages
-    - export EnableNuGetPackageRestore=true
-
-    # fix SteamKit dependency
-    - sed -i 's/SteamKit2.1.6.1/SteamKit2.1.6.3/g' $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/DepotDownloader.csproj
+    # restore NuGet packages
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && nuget restore DepotDownloader.sln
 
     # build DepotDownloader
-    - cd $TRAVIS_BUILD_DIR/DepotDownloader && .ci/build.sh
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && xbuild /p:NoWarn=1584 DepotDownloader.sln /target:DepotDownloader
 
     # move DepotDownloader to main directory
     - cp $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/DepotDownloader.exe $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/*.dll $TRAVIS_BUILD_DIR
