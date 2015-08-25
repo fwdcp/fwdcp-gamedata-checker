@@ -15,9 +15,6 @@ install:
     # download DepotDownloader source
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
 
-    # import NuGet certificates
-    - mozroots --sync --import
-
     # restore NuGet packages
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && nuget restore DepotDownloader.sln
 
