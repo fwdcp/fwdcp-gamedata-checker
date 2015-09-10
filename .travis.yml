@@ -21,7 +21,7 @@ install:
     - mozroots --import --sync
 
     # restore NuGet packages
-    - cd $TRAVIS_BUILD_DIR/DepotDownloader && mono --runtime=v4.0 $TRAVIS_BUILD_DIR/nuget/nuget.exe restore DepotDownloader.sln
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && mono --runtime=v4.5 $TRAVIS_BUILD_DIR/nuget/nuget.exe restore DepotDownloader.sln
 
     # build DepotDownloader
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && xbuild /p:NoWarn=1584 DepotDownloader.sln /target:DepotDownloader
