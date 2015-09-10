@@ -4,9 +4,8 @@ addons:
     apt:
         packages:
             # DepotDownloader build dependencies
-            - mono-devel
+            - mono-complete
             - libmono-system-core4.0-cil
-            - nuget
 
             # gdc build dependencies
             - g++-multilib
@@ -15,17 +14,20 @@ install:
     # download DepotDownloader source
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
 
+    # download NuGet
+    - mkdir $TRAVIS_BUILD_DIR/nuget && wget -O $TRAVIS_BUILD_DIR/nuget/nuget.exe https://nuget.org/nuget.exe
+
+    # install certificates
+    - mozroots --import --sync
+
     # restore NuGet packages
-    - cd $TRAVIS_BUILD_DIR/DepotDownloader && nuget restore DepotDownloader.sln
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && mono $TRAVIS_BUILD_DIR/nuget/nuget.exe restore DepotDownloader.sln
 
     # build DepotDownloader
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && xbuild /p:NoWarn=1584 DepotDownloader.sln /target:DepotDownloader
 
-    # move DepotDownloader to main directory
-    - cp $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/DepotDownloader.exe $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/*.dll $TRAVIS_BUILD_DIR
-
     # download TF2 binaries
-    - mkdir $TRAVIS_BUILD_DIR/srcds && cd $TRAVIS_BUILD_DIR && mono DepotDownloader.exe -app 232250 -dir $TRAVIS_BUILD_DIR/srcds -filelist $TRAVIS_BUILD_DIR/server-binaries.txt -all-platforms
+    - mkdir $TRAVIS_BUILD_DIR/srcds && cd $TRAVIS_BUILD_DIR && mono $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/DepotDownloader.exe -app 232250 -dir $TRAVIS_BUILD_DIR/srcds -filelist $TRAVIS_BUILD_DIR/server-binaries.txt -all-platforms
 
     # download SourceMod, which includes gdc
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
@@ -39,9 +41,6 @@ install:
     # build gdc
     - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
 
-    # move gdc to main directory
-    - cp $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork/Release/gdc $TRAVIS_BUILD_DIR
-
     # download CompCtrl
     - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
 
@@ -50,4 +49,4 @@ script:
     - cat $TRAVIS_BUILD_DIR/srcds/tf/steam.inf
 
     # test CompCtrl gamedata
-    - cd $TRAVIS_BUILD_DIR && LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/srcds/bin/ ./gdc -g tf -e ep2v -f $TRAVIS_BUILD_DIR/CompCtrl/gamedata/compctrl.txt -b $TRAVIS_BUILD_DIR/srcds/tf/bin/server_srv.so -x $TRAVIS_BUILD_DIR/srcds/bin/engine_srv.so -w $TRAVIS_BUILD_DIR/srcds/tf/bin/server.dll -y $TRAVIS_BUILD_DIR/srcds/bin/engine.dll
+    - cd $TRAVIS_BUILD_DIR && LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/srcds/bin/ $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork/Release/gdc -g tf -e ep2v -f $TRAVIS_BUILD_DIR/CompCtrl/gamedata/compctrl.txt -b $TRAVIS_BUILD_DIR/srcds/tf/bin/server_srv.so -x $TRAVIS_BUILD_DIR/srcds/bin/engine_srv.so -w $TRAVIS_BUILD_DIR/srcds/tf/bin/server.dll -y $TRAVIS_BUILD_DIR/srcds/bin/engine.dll
