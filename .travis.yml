@@ -1,27 +1,19 @@
-language: cpp
+# since the only way to get updated Mono packages is to use Xamarin, we have to set our language differently
+language: csharp
 
 addons:
     apt:
         packages:
-            # DepotDownloader build dependencies
-            - mono-complete
-            - libmono-system-core4.0-cil
-
             # gdc build dependencies
+            - build-essential
             - g++-multilib
 
 install:
     # download DepotDownloader source
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
 
-    # download NuGet
-    - mkdir $TRAVIS_BUILD_DIR/nuget && wget -O $TRAVIS_BUILD_DIR/nuget/nuget.exe https://nuget.org/nuget.exe
-
-    # install certificates
-    - mozroots --import --sync
-
     # restore NuGet packages
-    - cd $TRAVIS_BUILD_DIR/DepotDownloader && mono --runtime=v4.5 $TRAVIS_BUILD_DIR/nuget/nuget.exe restore DepotDownloader.sln
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && nuget restore DepotDownloader.sln
 
     # build DepotDownloader
     - cd $TRAVIS_BUILD_DIR/DepotDownloader && xbuild /p:NoWarn=1584 DepotDownloader.sln /target:DepotDownloader
