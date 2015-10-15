@@ -31,9 +31,6 @@ install:
     # make sure gdc can see the SourcePawn include files
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
 
-    # properly configure gdc to build successfully
-    - export CFLAGS="-Wno-unused-but-set-variable -std=c++0x"
-
     # build gdc
     - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
 
