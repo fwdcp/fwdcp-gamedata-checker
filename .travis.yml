@@ -29,7 +29,7 @@ install:
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
 
     # build gdc
-    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && export CC=clang && export CXX=clang++ && make
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make CPP='clang++'
 
     # download CompCtrl
     - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
