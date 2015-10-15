@@ -32,7 +32,7 @@ install:
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
 
     # build gdc
-    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && gcc --version && make
 
     # download CompCtrl
     - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
