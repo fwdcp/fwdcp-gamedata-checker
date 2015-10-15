@@ -10,6 +10,7 @@ addons:
         packages:
             # gdc build dependencies
             - g++-5-multilib
+            - linux-libc-dev:i386
 
 install:
     # download DepotDownloader source
