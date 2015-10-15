@@ -42,4 +42,4 @@ script:
     - cat $TRAVIS_BUILD_DIR/srcds/tf/steam.inf
 
     # test CompCtrl gamedata
-    - cd $TRAVIS_BUILD_DIR && LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/srcds/bin/ $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork/Release/gdc -g tf -e ep2v -f $TRAVIS_BUILD_DIR/CompCtrl/gamedata/compctrl.txt -b $TRAVIS_BUILD_DIR/srcds/tf/bin/server_srv.so -x $TRAVIS_BUILD_DIR/srcds/bin/engine_srv.so -w $TRAVIS_BUILD_DIR/srcds/tf/bin/server.dll -y $TRAVIS_BUILD_DIR/srcds/bin/engine.dll | tee $TRAVIS_BUILD_DIR/compctrl-results.txt && ! grep -qF '!' $TRAVIS_BUILD_DIR/compctrl-results.txt
+    - cd $TRAVIS_BUILD_DIR && LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/srcds/bin/ $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork/Release/gdc -g tf -e ep2v -f $TRAVIS_BUILD_DIR/CompCtrl/gamedata/compctrl.txt -b $TRAVIS_BUILD_DIR/srcds/tf/bin/server_srv.so -x $TRAVIS_BUILD_DIR/srcds/bin/engine_srv.so -w $TRAVIS_BUILD_DIR/srcds/tf/bin/server.dll -y $TRAVIS_BUILD_DIR/srcds/bin/engine.dll | tee $TRAVIS_BUILD_DIR/compctrl-results.txt && ! grep -qF '! ' $TRAVIS_BUILD_DIR/compctrl-results.txt
