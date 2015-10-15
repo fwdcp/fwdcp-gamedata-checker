@@ -5,13 +5,11 @@ addons:
     apt:
         sources:
             # gdc build dependencies
-            - debian-sid
+            - ubuntu-toolchain-r-test
 
         packages:
             # gdc build dependencies
-            - gcc
-            - g++
-            - g++-multilib
+            - g++-5-multilib
 
 install:
     # download DepotDownloader source
@@ -33,7 +31,7 @@ install:
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
 
     # build gdc
-    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make CPP='gcc-5'
 
     # download CompCtrl
     - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
