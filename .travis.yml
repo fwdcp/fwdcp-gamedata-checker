@@ -3,6 +3,10 @@ language: csharp
 
 addons:
     apt:
+        sources:
+            # gdc build dependencies
+            - debian-sid
+
         packages:
             # gdc build dependencies
             - build-essential
