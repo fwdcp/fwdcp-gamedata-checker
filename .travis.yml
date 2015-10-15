@@ -3,13 +3,10 @@ language: csharp
 
 addons:
     apt:
-        sources:
-            # gdc build dependencies
-            - debian-sid
-
         packages:
             # gdc build dependencies
             - build-essential
+            - clang
             - g++-multilib
 
 install:
@@ -32,7 +29,7 @@ install:
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
 
     # build gdc
-    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && gcc --version && make
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
 
     # download CompCtrl
     - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
