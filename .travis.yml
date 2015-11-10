@@ -1,16 +1,17 @@
-# since the only way to get updated Mono packages is to use Xamarin, we have to set our language differently
-language: csharp
+language: generic
 
 addons:
     apt:
         sources:
-            # gdc build dependencies
+            - mono
+            - mono-libtiff-compat
             - ubuntu-toolchain-r-test
 
         packages:
-            # gdc build dependencies
             - g++-5-multilib
             - linux-libc-dev:i386
+            - mono-complete
+            - nuget
 
 install:
     # download DepotDownloader source
