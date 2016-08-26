@@ -16,13 +16,22 @@
 		"Keys"
 		{
 			// CompCtrl
-			"CTFGameRules::SetWinningTeam"       "_ZN12CTFGameRules14SetWinningTeamEiibbbb"
-			"CTFGameRules::SetStalemate"         "_ZN12CTFGameRules12SetStalemateEibb"
-			"CTFGameRules::HandleSwitchTeams"    "_ZN12CTFGameRules17HandleSwitchTeamsEv"
-			"CTFGameRules::RestartTournament"    "_ZN12CTFGameRules17RestartTournamentEv"
-			"CTFGameRules::CheckWinLimit"        "_ZN12CTFGameRules13CheckWinLimitEb"
-			"CTFTeam::GetTeamNumber"             "_ZNK5CTeam13GetTeamNumberEv"
-			"CTFTeam::ResetScores"               "_ZN5CTeam11ResetScoresEv"
+			"CTeamplayRoundBasedRules::State_Transition"	"_ZN24CTeamplayRoundBasedRules16State_TransitionE22gamerules_roundstate_t"
+			"CTeamplayRoundBasedRules::State_Enter"			"_ZN24CTeamplayRoundBasedRules11State_EnterE22gamerules_roundstate_t"
+			"CTeamplayRoundBasedRules::State_Leave"			"_ZN24CTeamplayRoundBasedRules11State_LeaveEv"
+			"CTFGameRules::SetWinningTeam"   				"_ZN12CTFGameRules14SetWinningTeamEiibbbb"
+			"CTFGameRules::SetStalemate"			 		"_ZN12CTFGameRules12SetStalemateEibb"
+			"CTFGameRules::HandleSwitchTeams"				"_ZN12CTFGameRules17HandleSwitchTeamsEv"
+			"CTFGameRules::BetweenRounds_Start"				"_ZN12CTFGameRules19BetweenRounds_StartEv"
+			"CTFGameRules::BetweenRounds_End"				"_ZN12CTFGameRules17BetweenRounds_EndEv"
+			"CTFGameRules::BetweenRounds_Think"				"_ZN12CTFGameRules19BetweenRounds_ThinkEv"
+			"CTFGameRules::RestartTournament"				"_ZN12CTFGameRules17RestartTournamentEv"
+			"CTFGameRules::CheckWinLimit"					"_ZN12CTFGameRules13CheckWinLimitEb"
+			"CTFGameRules::RoundRespawn"					"_ZN12CTFGameRules12RoundRespawnEv"
+			"CTFGameRules::CleanUpMap"						"_ZN12CTFGameRules10CleanUpMapEv"
+			"CTFPlayer::ForceRespawn"			 			"_ZN9CTFPlayer12ForceRespawnEv"
+			"CTFTeam::GetTeamNumber"			 			"_ZNK5CTeam13GetTeamNumberEv"
+			"CTFTeam::ResetScores"			   				"_ZN5CTeam11ResetScoresEv"
 		}
 	}
 }
