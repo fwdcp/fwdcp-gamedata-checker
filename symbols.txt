@@ -26,7 +26,7 @@
 			"CTFGameRules::BetweenRounds_End"				"_ZN12CTFGameRules17BetweenRounds_EndEv"
 			"CTFGameRules::BetweenRounds_Think"				"_ZN12CTFGameRules19BetweenRounds_ThinkEv"
 			"CTFGameRules::RestartTournament"				"_ZN12CTFGameRules17RestartTournamentEv"
-			"CTFGameRules::CheckWinLimit"					"_ZN12CTFGameRules13CheckWinLimitEb"
+			"CTFGameRules::CheckWinLimit"					"_ZN12CTFGameRules13CheckWinLimitEbi"
 			"CTFGameRules::RoundRespawn"					"_ZN12CTFGameRules12RoundRespawnEv"
 			"CTFGameRules::CleanUpMap"						"_ZN12CTFGameRules10CleanUpMapEv"
 			"CTFPlayer::ForceRespawn"			 			"_ZN9CTFPlayer12ForceRespawnEv"
