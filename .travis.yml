@@ -1,15 +1,15 @@
 language: generic
 
+dist: trusty
+
 addons:
     apt:
         sources:
             - mono
-            - mono-libtiff-compat
-            - ubuntu-toolchain-r-test
 
         packages:
-            - g++-5-multilib
-            - linux-libc-dev:i386
+            - g++-multilib
+            - libc6-dev-i386
             - mono-complete
             - nuget
 
@@ -33,7 +33,7 @@ install:
     - ln -s $TRAVIS_BUILD_DIR/sourcemod/sourcepawn/include $TRAVIS_BUILD_DIR/sourcemod/public/sourcepawn
 
     # build gdc
-    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make CPP='gcc-5'
+    - cd $TRAVIS_BUILD_DIR/sourcemod/tools/gdc-psyfork && make
 
     # download CompCtrl
     - git clone https://github.com/fwdcp/CompCtrl.git $TRAVIS_BUILD_DIR/CompCtrl
