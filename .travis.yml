@@ -4,24 +4,20 @@ dist: xenial
 
 addons:
     apt:
-        sources:
-            - mono
-
         packages:
             - g++-multilib
             - libc6-dev-i386
-            - mono-complete
-            - nuget
+            - dotnet-sdk-2.0.0
 
 install:
     # download DepotDownloader source
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
 
     # restore NuGet packages
-    - cd $TRAVIS_BUILD_DIR/DepotDownloader && nuget restore DepotDownloader.sln
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && dotnet restore DepotDownloader.sln
 
     # build DepotDownloader
-    - cd $TRAVIS_BUILD_DIR/DepotDownloader && xbuild /p:NoWarn=1584 DepotDownloader.sln /target:DepotDownloader
+    - cd $TRAVIS_BUILD_DIR/DepotDownloader && dotnet build DepotDownloader.sln
 
     # download TF2 binaries
     - mkdir $TRAVIS_BUILD_DIR/srcds && cd $TRAVIS_BUILD_DIR && mono $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/bin/Debug/DepotDownloader.exe -app 232250 -dir $TRAVIS_BUILD_DIR/srcds -filelist $TRAVIS_BUILD_DIR/server-binaries.txt -all-platforms
