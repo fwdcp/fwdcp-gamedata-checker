@@ -15,7 +15,7 @@ install:
     - git clone https://github.com/SteamRE/DepotDownloader.git $TRAVIS_BUILD_DIR/DepotDownloader
 
     # download TF2 binaries
-    - mkdir $TRAVIS_BUILD_DIR/srcds && cd $TRAVIS_BUILD_DIR && dotnet run $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/DepotDownloader.csproj -- -app 232250 -dir $TRAVIS_BUILD_DIR/srcds -filelist $TRAVIS_BUILD_DIR/server-binaries.txt -all-platforms
+    - mkdir $TRAVIS_BUILD_DIR/srcds && cd $TRAVIS_BUILD_DIR && dotnet run --project $TRAVIS_BUILD_DIR/DepotDownloader/DepotDownloader/DepotDownloader.csproj -- -app 232250 -dir $TRAVIS_BUILD_DIR/srcds -filelist $TRAVIS_BUILD_DIR/server-binaries.txt -all-platforms
 
     # download SourceMod, which includes gdc
     - git clone --recursive https://github.com/alliedmodders/sourcemod.git $TRAVIS_BUILD_DIR/sourcemod
